@@ -1,5 +1,5 @@
 # Dawn Validator Bot
-Automation farming Script for Dawn Validator using proxies. This bot support ulti accounts.
+Automation farming Script for Dawn Validator using proxies. This bot support multi accounts.
 ### Tools and components required
 1. Dawn Validator Account | Download [Dawn Validator Extension](https://chromewebstore.google.com/detail/dawn-validator-chrome-ext/fpdkjdnhkakefebpekbdhillbhonfjjp)
 2. Open ``chrome-extension://fpdkjdnhkakefebpekbdhillbhonfjjp/signup.html``, insert Referral code ``rj6ektjg`` and Register
