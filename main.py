@@ -206,7 +206,7 @@ class DawnValidatorBot:
             headers['Proxy'] = proxy
 
         self.log_colored("INFO", f"Processing account: {email}", Colors.INFO)
-        self.log_colored("INFO", f"Using proxy: {proxy or 'No Proxy'}", Colors.INFO)
+        # self.log_colored("INFO", f"Using proxy: {proxy or 'No Proxy'}", Colors.INFO)
 
         points = await self.fetch_points(headers)
         self.log_colored("INFO", f"Current points: {points}", Colors.WARNING)
