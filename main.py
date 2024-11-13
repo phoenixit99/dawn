@@ -154,7 +154,6 @@ class DawnValidatorBot:
     def load_accounts(mode: str) -> List[Dict[str, str]]:
         if mode == "1":
             return DawnValidatorBot._get_single_account()
-        return DawnValidatorBot._load_accounts_from_file()
 
     @staticmethod
     def _get_single_account() -> List[Dict[str, str]]:
@@ -174,35 +173,6 @@ class DawnValidatorBot:
             print(f"{Colors.SUCCESS}SUCCESS: Account details received{Colors.RESET}")
             return [{'email': email, 'token': token}]
 
-    @staticmethod
-    def _load_accounts_from_file() -> List[Dict[str, str]]:
-        try:
-            accounts = []
-            with open('accounts.txt', 'r') as f:
-                for line in f:
-                    if ':' not in line:
-                        continue
-                
-                    email, token = line.strip().split(':')
-                    if email and token:
-                        accounts.append({
-                            'email': email.strip(),
-                            'token': token.strip()
-                        })
-        
-            if not accounts:
-                raise ValueError("No valid accounts found in accounts.txt")
-        
-            DawnValidatorBot.log_colored("SUCCESS", f"Loaded {len(accounts)} accounts from accounts.txt", Colors.SUCCESS)
-            return accounts
-        
-        except FileNotFoundError:
-            DawnValidatorBot.log_colored("WARNING", "accounts.txt not found", Colors.WARNING)
-            return []
-        except Exception as e:
-            DawnValidatorBot.log_colored("ERROR", f"Error loading accounts from accounts.txt: {str(e)}", Colors.ERROR)
-            return []
-
     def load_proxies(self) -> None:
         try:
             with open('proxies.txt', 'r') as f:
@@ -220,9 +190,9 @@ class DawnValidatorBot:
     def display_welcome() -> None:
         print(f"""
 {Colors.INFO}{Style.BRIGHT}╔══════════════════════════════════════════════╗
-║            Dawn Validator AutoBot            ║
-║     Github: https://github.com/IM-Hanzou     ║
-║      Welcome and do with your own risk!      ║
+║                                              ║
+║              Henry RNodes                    ║
+║                                              ║
 ╚══════════════════════════════════════════════╝{Colors.RESET}
 """)
 
@@ -257,17 +227,7 @@ async def main():
     bot = DawnValidatorBot()
     bot.display_welcome()
     
-    print(f"{Colors.INFO}Select mode:{Colors.RESET}")
-    print("1. Single Account")
-    print("2. Multiple Accounts [from accounts.txt]")
-    
-    while True:
-        mode = input(f"{Colors.WARNING}Enter choice (1/2): {Colors.RESET}")
-        if mode in ['1', '2']:
-            break
-        print(f"{Colors.ERROR}ERROR: Invalid choice. Please enter 1 or 2.{Colors.RESET}")
-    
-    accounts = bot.load_accounts(mode)
+    accounts = bot.load_accounts('1')
     if not accounts:
         bot.log_colored("ERROR", "No accounts available. Exiting...", Colors.ERROR)
         return
