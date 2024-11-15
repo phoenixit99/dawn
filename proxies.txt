@@ -1,2 +1,2 @@
-http://65.109.220.163:80
-http://85.215.64.49:80
+proxy1(http:host:port)
+proxy2(http:host:port)
